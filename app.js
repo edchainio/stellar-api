@@ -38,7 +38,7 @@ var testDestination = 'GAGJPIYKYJAIGZU4IJRTCLD66E4AK5EJKT5WS4X42OG3A3NEZX7C7ZNQ'
 
 //api to get account details and check balance. pass Account details as param
 	server.loadAccount(pair.publicKey()).then(function(account){
-		console.log("Balances for account: ' + pair.publicKey());
+		console.log('Balances for account: ' + pair.publicKey());
 			    account.balances.forEach(function(balance) {
 				console.log('Type: ', balance.asset_type, ',Balance:', balance.balance);
 		});
