@@ -2,9 +2,13 @@ var StellarSdk = require('stellar-sdk');
 var config = require('./config');
 var server = new StellarSdk.Server(config.server);
 var sourceKeys = StellarSdk.Keypair.fromSecret(config.secret);
-var express = require('express')
+var express = require('express');
+var request = require('request'); 
 
-var app = express()
+//StellarSDK.Keypair.fromSecret was already created so this may be redundant
+//var pair = StellarSDK.Keypair.random(); 
+
+var app = express();
 var srcAccount = config.account;
 
 app.listen(3000,()=> console.log('stellar api listen'));
@@ -18,8 +22,27 @@ var testDestination = 'GAGJPIYKYJAIGZU4IJRTCLD66E4AK5EJKT5WS4X42OG3A3NEZX7C7ZNQ'
 
 //api to use friendbot to fund account
 
+	//Funding an account 
+	request.get({
+		url: 'https://friendbot.stellar.org',
+		qs: {addr: pair.publicKey() }, 
+		json: true },
+		    function(error, response, body) {
+			console.error('ERR', error || body);
+				if (error || response.statusCode !== 200){
+				}
+				else {
+					console.log('success :)\n' body); 
+				}
+		});
 
 //api to get account details and check balance. pass Account details as param
+	server.loadAccount(pair.publicKey()).then(function(account){
+		console.log("Balances for account: ' + pair.publicKey());
+			    account.balances.forEach(function(balance) {
+				console.log('Type: ', balance.asset_type, ',Balance:', balance.balance);
+		});
+	}); 
 
 //api to send payment. Param: sender account to temp account from edchain
 //app.post('/steller/payment/send/:account', function(req,res){
