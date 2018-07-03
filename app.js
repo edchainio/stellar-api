@@ -23,7 +23,7 @@ var testDestination = 'GAGJPIYKYJAIGZU4IJRTCLD66E4AK5EJKT5WS4X42OG3A3NEZX7C7ZNQ'
 //api to use friendbot to fund account
 
 	//Funding an account 
-	request.get({
+	/*request.get({
 		url: 'https://friendbot.stellar.org',
 		qs: {addr: pair.publicKey() }, 
 		json: true },
@@ -33,7 +33,7 @@ var testDestination = 'GAGJPIYKYJAIGZU4IJRTCLD66E4AK5EJKT5WS4X42OG3A3NEZX7C7ZNQ'
 				}
 				else {
 					console.log('success :)\n' body); 
-				}
+				}*/
 		});
 
 //api to get account details and check balance. pass Account details as param
